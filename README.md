@@ -22,3 +22,8 @@ InstaLive is a fork of [JRoy/InstagramLive-PHP](https://github.com/JRoy/Instagra
 
 With `--dandy` mode you can run without OBS, just input `File / URL Path` or `Youtube URL` for media source on Command Line.
 And you can access the localhost for control panel.
+
+<p align="center">
+  <img src="https://github.com/dandyraka/InstaLive/raw/master/Screenshot_6.png" width="350">
+  <img src="https://github.com/dandyraka/InstaLive/raw/master/Screenshot_7.png" width="350">
+</p>
