@@ -3,7 +3,7 @@
 /** @noinspection PhpUndefinedConstantInspection */
 
 set_time_limit(0);
-date_default_timezone_set('Asia/Jakarta');
+date_default_timezone_set('America/New_York');
 if (php_sapi_name() !== "cli") {
     die("This script may not be run on a website!");
 }
@@ -575,7 +575,7 @@ function livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAuto, 
         if (webMode) {
             $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\"" : "") . " -S " . WEB_HOST . ":" . WEB_PORT . " " . (Utils::isMac() ? __DIR__ . "/" : "") . "webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
         } else if(dandyMode){
-            shell_exec("php -S ".WEB_HOST.":".WEB_PORT." webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : ""));
+            shell_exec("php -S localhost:".WEB_PORT." webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : ""));
         }
         $cmd = "";
         if (Utils::isWindows()) {
