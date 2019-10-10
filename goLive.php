@@ -519,24 +519,8 @@ function preparationFlow($helper, $args, $commandData, $streamTotalSec = 0, $aut
             }
             livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper, $streamTotalSec, $autoPin, $args, $commandData, $startCommentTs, $startLikeTs, $startingQuestion, $startingTime);
         } else {
-            if(dandyMode){
-                //Utils::log("Command Line: Windows/macOS Detected! A new console will open for command input and this will display command and livestream output.");
-                $startCommentTs = 0;
-                $startLikeTs = 0;
-                $startingQuestion = -1;
-                $startingTime = -1;
-                if (Utils::isRecovery()) {
-                    $recoveryData = Utils::getRecovery();
-                    $startCommentTs = $recoveryData['lastCommentTs'];
-                    $startLikeTs = $recoveryData['lastLikeTs'];
-                    $startingQuestion = $recoveryData['lastQuestion'];
-                    $startingTime = $recoveryData['startTime'];
-                }
-                livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper, $streamTotalSec, $autoPin, $args, $commandData, $startCommentTs, $startLikeTs, $startingQuestion, $startingTime);
-            } else {
-                Utils::log("Command Line: Linux Detected! The script has entered legacy mode. Please use Windows or macOS for all the latest features.");
-                legacyLivestreamingFlow($ig->live, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper);
-            }
+            Utils::log("Command Line: Linux Detected! The script has entered legacy mode. Please use Windows or macOS for all the latest features.");
+            legacyLivestreamingFlow($ig->live, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper);
         }
 
         Utils::log("Livestream: Something has gone wrong!");
@@ -574,8 +558,6 @@ function livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAuto, 
         $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\" " : (Utils::isMac() ? (" " . __DIR__ . "/") : "")) . "commandLine.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
         if (webMode) {
             $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\"" : "") . " -S " . WEB_HOST . ":" . WEB_PORT . " " . (Utils::isMac() ? __DIR__ . "/" : "") . "webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
-        } else if(dandyMode){
-            $consoleCommand = "php -S localhost:8000 webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
         }
         $cmd = "";
         if (Utils::isWindows()) {
