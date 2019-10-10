@@ -11,14 +11,15 @@ InstaLive is a fork of [JRoy/InstagramLive-PHP](https://github.com/JRoy/Instagra
 3. Run the `goLive.php` script. (`php goLive.php --dandy`)
 
 # Termux
-1. Install Composer :
+1. `pkg install curl`
+2. Install Composer :
 `curl -sS https://getcomposer.org/installer | php -- --install-dir=/data/data/com.termux/files/usr/bin --filename=composer`
-2. Install ffmpeg :
+3. Install ffmpeg :
 `pkg install ffmpeg`
-3. `composer install`
-4. Edit the `USERNAME` and `PASSWORD` inside of the `config.php` file to your Instagram username/password.
-5. Run the `goLive.php` script. (`php goLive.php --dandy`)
-6. Open `127.0.0.1` or `localhost` from your browser.
+4. `composer install`
+5. Edit the `USERNAME` and `PASSWORD` inside of the `config.php` file to your Instagram username/password.
+6. Run the `goLive.php` script. (`php goLive.php --dandy`)
+7. Open `127.0.0.1` or `localhost` from your browser.
 
 With `--dandy` mode you can run without OBS, just input `File / URL Path` or `Youtube URL` for media source on Command Line.
 And you can access the localhost for control panel.
