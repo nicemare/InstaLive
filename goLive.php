@@ -575,7 +575,7 @@ function livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAuto, 
         if (webMode) {
             $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\"" : "") . " -S " . WEB_HOST . ":" . WEB_PORT . " " . (Utils::isMac() ? __DIR__ . "/" : "") . "webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
         } else if(dandyMode){
-            $consoleCommand = PHP_BINARY . " -S localhost:8000 webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
+            $consoleCommand = "php -S localhost:8000 webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
         }
         $cmd = "";
         if (Utils::isWindows()) {
