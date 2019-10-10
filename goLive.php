@@ -3,7 +3,7 @@
 /** @noinspection PhpUndefinedConstantInspection */
 
 set_time_limit(0);
-date_default_timezone_set('America/New_York');
+date_default_timezone_set('Asia/Jakarta');
 if (php_sapi_name() !== "cli") {
     die("This script may not be run on a website!");
 }
@@ -520,7 +520,7 @@ function preparationFlow($helper, $args, $commandData, $streamTotalSec = 0, $aut
             livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper, $streamTotalSec, $autoPin, $args, $commandData, $startCommentTs, $startLikeTs, $startingQuestion, $startingTime);
         } else {
             if(dandyMode){
-                Utils::log("Command Line: Windows/macOS Detected! A new console will open for command input and this will display command and livestream output.");
+                //Utils::log("Command Line: Windows/macOS Detected! A new console will open for command input and this will display command and livestream output.");
                 $startCommentTs = 0;
                 $startLikeTs = 0;
                 $startingQuestion = -1;
@@ -572,8 +572,10 @@ function livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAuto, 
         Utils::log("Command Line: To start the new command line, please run the commandLine.php script.");
     } elseif (true) {
         $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\" " : (Utils::isMac() ? (" " . __DIR__ . "/") : "")) . "commandLine.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
-        if (webMode || dandyMode) {
+        if (webMode) {
             $consoleCommand = PHP_BINARY . (Utils::isWindows() ? "\"" : "") . " -S " . WEB_HOST . ":" . WEB_PORT . " " . (Utils::isMac() ? __DIR__ . "/" : "") . "webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : "");
+        } else if(dandyMode){
+            shell_exec("php -S ".WEB_HOST.":".WEB_PORT." webServer.php" . (autoArchive === true ? " -a" : "") . (autoDiscard === true ? " -d" : ""));
         }
         $cmd = "";
         if (Utils::isWindows()) {
