@@ -519,7 +519,8 @@ function preparationFlow($helper, $args, $commandData, $streamTotalSec = 0, $aut
             }
             livestreamingFlow($ig, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper, $streamTotalSec, $autoPin, $args, $commandData, $startCommentTs, $startLikeTs, $startingQuestion, $startingTime);
         } else {
-            Utils::log("Command Line: Linux Detected! The script has entered legacy mode. Please use Windows or macOS for all the latest features.");
+            Utils::log("Command Line: Linux Detected! The script has entered legacy mode. Please use Windows or macOS for all the latest features.\n
+            Type 'help' to show command list.");
             legacyLivestreamingFlow($ig->live, $broadcastId, $streamUrl, $streamKey, $obsAutomation, $helper);
         }
 
